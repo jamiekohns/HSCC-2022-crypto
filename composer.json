@@ -1,0 +1,21 @@
+{
+    "name": "hscc/crypto",
+    "description": "Crypto tracker for HSCC",
+    "type": "project",
+    "require": {
+        "bcosca/fatfree-core": "^3.8",
+        "guzzlehttp/guzzle": "^7.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "authors": [
+        {
+            "name": "Jamie Kohns",
+            "email": "jamiekohns@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Crypto\\": "src/"
+        }
+    }
+}
