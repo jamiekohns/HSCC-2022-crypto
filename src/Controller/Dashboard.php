@@ -10,8 +10,6 @@ class Dashboard {
     }
 
     public function home($f3) {
-        $f3->set('date', date('r'));
-
         $weatherRepo = new WeatherRepository();
         $weather = $weatherRepo->getWeather();
 

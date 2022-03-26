@@ -21,6 +21,11 @@ class WeatherRepository
         $this->client = $client;
     }
 
+    /**
+     * Get the weather for a given location
+     * 
+     * @param mixed $locationId the woeid from https://www.metaweather.com/api/#location
+     */
     public function getWeather($locationId = null)
     {
         if (!$locationId) {
