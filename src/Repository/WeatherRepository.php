@@ -7,11 +7,23 @@ use GuzzleHttp\Client;
 
 class WeatherRepository 
 {
+    /**
+     * The weather API location woeid for Atlanta, GA
+     */
     const LOCATION_ATLANTA = 2357024;
 
+    /**
+     * @var WeatherClient $client
+     */
     private $client;
 
-    public function __construct(Client $client = null)
+    /**
+     * WeatherRepository constructor
+     * NOTE the type declaration of the $client!!!
+     * 
+     * @param WeatherClient $client a Guzzle WeatherClient
+     */
+    public function __construct(WeatherClient $client = null)
     {
         // if no client was provided, create one
         if (!$client) {
