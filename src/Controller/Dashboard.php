@@ -13,6 +13,8 @@ class Dashboard {
         $weatherRepo = new WeatherRepository();
         $weather = $weatherRepo->getWeather();
 
+        $cryptoRepo = new CryptoRepository($f3->get('secrets.CRYPTO_API_KEY'));        
+
         $f3->set('weather', $weather['consolidated_weather'][0]);
 
         echo \Template::instance()->render('src/Template/dash-a.html');

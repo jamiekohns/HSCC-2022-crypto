@@ -9,12 +9,12 @@ use GuzzleHttp\Client;
  */
 class CryptoClient extends Client
 {
-    public function __construct()
+    public function __construct($apiKey)
     {
         parent::__construct([
             'base_uri' => 'https://rest.coinapi.io/',
             'headers' => [
-                'X-CoinAPI-Key' => '4E1DF9F6-ECD7-4C5D-9128-44B2C5311F3A',
+                'X-CoinAPI-Key' => $apiKey,
             ],
         ]);
     }
