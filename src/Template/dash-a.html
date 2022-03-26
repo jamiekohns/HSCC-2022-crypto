@@ -58,8 +58,10 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                        </form>
-            
+                    </form>
+                    <div class="text-end weather">
+                        Atlanta Temp:{{ @weather.the_temp }}
+                    </div>
                     <div class="text-end">
                         <button type="button" class="btn btn-light text-dark me-2">Login</button>
                         <button type="button" class="btn btn-primary">Sign-up</button>
