@@ -9,11 +9,11 @@ class CryptoRepository
 {
     private $client;
 
-    public function __construct(Client $client = null)
+    public function __construct(string $apiKey, Client $client = null)
     {
         // if no client was provided, create one
         if (!$client) {
-            $client = new CryptoClient();
+            $client = new CryptoClient($apiKey);
         }
 
         $this->client = $client;
