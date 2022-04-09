@@ -2,8 +2,9 @@
 
 namespace Crypto\Repository;
 
-use Crypto\Client\WeatherClient;
 use GuzzleHttp\Client;
+use Crypto\Model\Weather;
+use Crypto\Client\WeatherClient;
 
 class WeatherRepository 
 {
@@ -50,13 +51,13 @@ class WeatherRepository
             
             $data = json_decode($response->getBody()->getContents(), true);
 
-            return $data;
+            return new Weather($data);
         } catch (\Exception $e) {
             return [
                 'error' => $e->getMessage(),
             ];
         }
 
-        return [];
+        return new Weather();
     }
 }

@@ -60,7 +60,7 @@
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
                     <div class="text-end weather">
-                        Atlanta Temp:{{ @weather.the_temp }}
+                        Atlanta Temp: {{ @weather->getCurrentTemp() }}&#176;
                     </div>
                     <div class="text-end">
                         <button type="button" class="btn btn-light text-dark me-2">Login</button>
@@ -75,9 +75,9 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">$123.45</span>
+                            <span class="h2 price">${{ number_format(@btcPrice.rate, 2) }}</span> USD
                             <h5 class="card-title">BTC</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Bitcoin</p>
                             <a href="#" class="btn btn-primary">Go BTC</a>
                         </div>
                     </div>
@@ -85,9 +85,9 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">$123.45</span>
+                            <span class="h2 price">${{ number_format(@ethPrice.rate, 2) }}</span> USD
                             <h5 class="card-title">ETH</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Ethereum</p>
                             <a href="#" class="btn btn-primary">Go ETH</a>
                         </div>
                     </div>
@@ -95,10 +95,10 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">$123.45</span>
-                            <h5 class="card-title">DOG</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go DOG</a>
+                            <span class="h2 price">${{ number_format(@shbPrice.rate, 6) }}</span> USD
+                            <h5 class="card-title">SHIB</h5>
+                            <p class="card-text">Shiba Inu</p>
+                            <a href="#" class="btn btn-primary">Go SHIB</a>
                         </div>
                     </div>
                 </div>
