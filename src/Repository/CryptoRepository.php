@@ -18,4 +18,9 @@ class CryptoRepository
 
         $this->client = $client;
     }
+
+    public function getPrice($symbol, $currency = 'USD')
+    {
+        
+    }
 }
