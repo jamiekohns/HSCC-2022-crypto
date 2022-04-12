@@ -18,7 +18,7 @@ class Dashboard {
         $f3->set('weather', $weather);
 
         $cryptoRepo = new CryptoRepository($f3->get('secrets.CRYPTO_API_KEY'));        
-        
+
 
         echo \Template::instance()->render('src/Template/dash-a.html');
     }

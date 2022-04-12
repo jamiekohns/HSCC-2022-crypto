@@ -21,6 +21,6 @@ class CryptoRepository
 
     public function getPrice($symbol, $currency = 'USD')
     {
-        
+
     }
 }
