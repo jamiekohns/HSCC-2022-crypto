@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
  */
 class CryptoClient extends Client
 {
-    public function __construct($apiKey)
+    public function __construct(string $apiKey)
     {
         parent::__construct([
             'base_uri' => 'https://rest.coinapi.io/',

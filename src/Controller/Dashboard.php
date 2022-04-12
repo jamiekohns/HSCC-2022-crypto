@@ -2,8 +2,9 @@
 
 namespace Crypto\Controller;
 
-use Crypto\Repository\WeatherRepository;
+use Crypto\Model\Weather;
 use Crypto\Repository\CryptoRepository;
+use Crypto\Repository\WeatherRepository;
 
 class Dashboard {
     public function hello($f3) {
@@ -12,11 +13,12 @@ class Dashboard {
 
     public function home($f3) {
         $weatherRepo = new WeatherRepository();
-        $weather = $weatherRepo->getWeather();
+        $data = $weatherRepo->getWeather();
+        $weather = new Weather($data);
+        $f3->set('weather', $weather);
 
         $cryptoRepo = new CryptoRepository($f3->get('secrets.CRYPTO_API_KEY'));        
 
-        $f3->set('weather', $weather['consolidated_weather'][0]);
 
         echo \Template::instance()->render('src/Template/dash-a.html');
     }
