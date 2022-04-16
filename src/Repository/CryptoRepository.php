@@ -2,8 +2,9 @@
 
 namespace Crypto\Repository;
 
-use Crypto\Client\CryptoClient;
 use GuzzleHttp\Client;
+use Crypto\Model\Crypto;
+use Crypto\Client\CryptoClient;
 
 class CryptoRepository 
 {
@@ -75,9 +76,8 @@ class CryptoRepository
 
             $data = json_decode($response->getBody()->getContents(), true);
 
-            return $data;
+            return new Crypto($data);
         } catch (\Exception $e) {
-            die($e->getMessage());
             return [
                 'error' => $e->getMessage(),
             ];

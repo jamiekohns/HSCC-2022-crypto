@@ -75,7 +75,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">${{ number_format(@btcPrice.rate, 2) }}</span> USD
+                            <span class="h2 price">${{ @btcPrice->getRoundRate() }}</span> USD
                             <h5 class="card-title">BTC</h5>
                             <p class="card-text">Bitcoin</p>
                             <a href="#" class="btn btn-primary">Go BTC</a>
@@ -85,7 +85,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">${{ number_format(@ethPrice.rate, 2) }}</span> USD
+                            <span class="h2 price">${{ @ethPrice->getRoundRate() }}</span> USD
                             <h5 class="card-title">ETH</h5>
                             <p class="card-text">Ethereum</p>
                             <a href="#" class="btn btn-primary">Go ETH</a>
@@ -95,7 +95,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <span class="h2 price">${{ number_format(@shbPrice.rate, 6) }}</span> USD
+                            <span class="h2 price">${{ @shbPrice->getRoundRate(6) }}</span> USD
                             <h5 class="card-title">SHIB</h5>
                             <p class="card-text">Shiba Inu</p>
                             <a href="#" class="btn btn-primary">Go SHIB</a>
