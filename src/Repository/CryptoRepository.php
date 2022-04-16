@@ -2,8 +2,9 @@
 
 namespace Crypto\Repository;
 
-use Crypto\Client\CryptoClient;
 use GuzzleHttp\Client;
+use Crypto\Model\Crypto;
+use Crypto\Client\CryptoClient;
 
 class CryptoRepository 
 {
@@ -17,5 +18,69 @@ class CryptoRepository
         }
 
         $this->client = $client;
+    }
+
+    public function getExchanges()
+    {
+        try {
+            $uri = 'exchanges';
+            $response = $this->client->request('GET', $uri);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            return $data;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+            return [
+                'error' => $e->getMessage(),
+            ];
+        }
+
+        return [];
+    }
+
+    public function getSymbols($exchange = 'COINBASE')
+    {
+        try {
+            $uri = 'symbols';
+            $response = $this->client->request('GET', $uri, [
+                'query' => [
+                    'filter_exchange_id' => 'COINBASE',
+                    'filter_symbol_id' => 'BTC',
+                ],
+            ]);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            return $data;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+            return [
+                'error' => $e->getMessage(),
+            ];
+        }
+
+        return [];
+    }
+
+    public function getPrice($symbol, $currency = 'USD')
+    {
+        try {
+            $uri = sprintf(
+                'exchangerate/%s/%s',
+                $symbol,
+                $currency
+            );
+
+            $response = $this->client->request('GET', $uri);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            return new Crypto($data);
+        } catch (\Exception $e) {
+            return [
+                'error' => $e->getMessage(),
+            ];
+        }
     }
 }
