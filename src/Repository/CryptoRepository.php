@@ -3,10 +3,12 @@
 namespace Crypto\Repository;
 
 use GuzzleHttp\Client;
-use Crypto\Model\Crypto;
+use Crypto\Model\Symbol;
+use Crypto\Model\ExchangeRate;
 use Crypto\Client\CryptoClient;
+use Crypto\Repository\Repository;
 
-class CryptoRepository 
+class CryptoRepository extends Repository
 {
     private $client;
 
@@ -39,20 +41,18 @@ class CryptoRepository
         return [];
     }
 
-    public function getSymbols($exchange = 'COINBASE')
+    public function getSymbols($exchange = 'COINBASE', $symbol = 'BTC')
     {
         try {
             $uri = 'symbols';
             $response = $this->client->request('GET', $uri, [
                 'query' => [
-                    'filter_exchange_id' => 'COINBASE',
-                    'filter_symbol_id' => 'BTC',
+                    'filter_exchange_id' => $exchange,
+                    'filter_symbol_id' => $symbol,
                 ],
             ]);
 
-            $data = json_decode($response->getBody()->getContents(), true);
-
-            return $data;
+            return ExchangeRateResultSetFactory::buildFromResponse($response);
         } catch (\Exception $e) {
             die($e->getMessage());
             return [
@@ -76,7 +76,7 @@ class CryptoRepository
 
             $data = json_decode($response->getBody()->getContents(), true);
 
-            return new Crypto($data);
+            return new ExchangeRate($data);
         } catch (\Exception $e) {
             return [
                 'error' => $e->getMessage(),

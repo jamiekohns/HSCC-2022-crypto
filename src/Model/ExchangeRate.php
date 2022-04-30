@@ -2,7 +2,7 @@
 
 namespace Crypto\Model;
 
-class Crypto extends Model
+class ExchangeRate extends Model
 {
 
     protected $time;
@@ -14,8 +14,6 @@ class Crypto extends Model
     protected $rate;
 
     
-
-
     /**
      * Get the value of time
      */
