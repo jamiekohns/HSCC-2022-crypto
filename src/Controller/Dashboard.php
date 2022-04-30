@@ -43,8 +43,10 @@ class Dashboard {
     {
         $repo = new RequesRepository();
         $users = $repo->getUsers($_GET['page']);
-
         $f3->set('users', $users);
+
+        $user_auths = $f3->get('DB')->exec('SELECT * FROM user_auth');
+        $f3->set('user_auths', $user_auths);
 
         echo \Template::instance()->render('src/Template/users.html');
     }

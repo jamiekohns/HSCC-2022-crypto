@@ -75,6 +75,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Avatar</th>
                             <th>Name</th>
                             <th>Email</th>
                         </tr>
@@ -82,8 +83,10 @@
                     <tbody>
                         <repeat group="{{ $users }}" value="{{ $user }}"></repeat>
                             <tr>
+                                <td>{{ $user->getId() }}</td>
                                 <td><img src="{{ $user->getAvatar() }}"></td>
-                                <td>{{ $user->getFullName() }}</td>
+                                <!-- This is the entry point for the "profile" page view -->
+                                <td><a href="profile?user_id={{ $user->getId() }}">{{ $user->getFullName() }}</a></td>
                                 <td>{{ $user->getEmail() }}</td>
                             </tr>
                         </repeat>

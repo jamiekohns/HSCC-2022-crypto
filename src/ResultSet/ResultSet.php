@@ -14,6 +14,7 @@ class ResultSet implements \ArrayAccess, \Iterator
         $this->items = $items;
     }
 
+    /* ArrayAccess interface methods */
     public function offsetSet($offset, $value) {
         if (is_null($offset)) {
             $this->items[] = $value;
@@ -22,7 +23,6 @@ class ResultSet implements \ArrayAccess, \Iterator
         }
     }
 
-    /* ArrayAccess interface methods */
     public function offsetExists($offset) {
         return isset($this->items[$offset]);
     }

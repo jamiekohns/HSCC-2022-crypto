@@ -120,4 +120,15 @@ class RequesUser extends Model
     {
         return sprintf('%s %s', $this->first_name, $this->last_name);
     }
+    
+    public function getUserAuth(array $auths)
+    {
+        foreach ($auths as $auth) {
+            if ($auth['user_id'] == $this->getId()) {
+                return $auth;
+            }
+        }
+
+        return null;
+    }
 }
