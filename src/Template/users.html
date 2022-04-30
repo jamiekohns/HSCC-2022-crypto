@@ -59,9 +59,7 @@
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
-                    <div class="text-end weather">
-                        Atlanta Temp: {{ @weather->getCurrentTemp() }}&#176;
-                    </div>
+  
                     <div class="text-end">
                         <button type="button" class="btn btn-light text-dark me-2">Login</button>
                         <button type="button" class="btn btn-primary">Sign-up</button>
@@ -72,69 +70,35 @@
 
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="h2 price">${{ @btcPrice->getRoundRate() }}</span> USD
-                            <h5 class="card-title">BTC</h5>
-                            <p class="card-text">Bitcoin</p>
-                            <a href="#" class="btn btn-primary">Go BTC</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="h2 price">${{ @ethPrice->getRoundRate() }}</span> USD
-                            <h5 class="card-title">ETH</h5>
-                            <p class="card-text">Ethereum</p>
-                            <a href="#" class="btn btn-primary">Go ETH</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="h2 price">${{ @shbPrice->getRoundRate(6) }}</span> USD
-                            <h5 class="card-title">SHIB</h5>
-                            <p class="card-text">Shiba Inu</p>
-                            <a href="#" class="btn btn-primary">Go SHIB</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <a href="symbols" class="button">See All Symbols</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mt-2">
-            <div class="row">
-                <div class="col card news">
-                    <div class="card-body">
-                        <h2 class="card-title">Latest News</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a semper enim. 
-                            Donec sit amet sapien velit. Nunc mattis ipsum sit amet volutpat congue. 
-                            Aliquam porttitor bibendum ex, ac imperdiet nisi. Lorem ipsum dolor sit amet, 
-                            onsectetur adipiscing elit. Curabitur a viverra risus. Nam posuere auctor suscipit. 
-                            Fusce et neque sed justo viverra scelerisque eget vitae dui. Sed diam nisl, 
-                            pharetra et turpis et, facilisis mattis leo. Aliquam id mattis velit. 
-                            Phasellus convallis eget lacus in fringilla. 
-                            Nunc consequat leo quis pellentesque congue.</p>
-
-                        <p>Cras ac facilisis quam, in imperdiet magna. Proin felis sem, ornare a convallis 
-                            et, aliquam in ligula. Cras sollicitudin augue a magna fermentum, 
-                            vel iaculis nisi pellentesque. Nunc aliquam purus et lorem pharetra elementum. 
-                            Sed vel rhoncus lectus, eu egestas velit. Duis venenatis porta vulputate. 
-                            Vivamus eget maximus metus. Nulla facilisi. Cras dictum arcu felis, ac vehicula 
-                            risus imperdiet sit amet. Nam vehicula lorem sit amet purus tristique gravida.</p>
-                    </div>
-                </div>
+                <h3>Users</h3> 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <repeat group="{{ $users }}" value="{{ $user }}"></repeat>
+                            <tr>
+                                <td><img src="{{ $user->getAvatar() }}"></td>
+                                <td>{{ $user->getFullName() }}</td>
+                                <td>{{ $user->getEmail() }}</td>
+                            </tr>
+                        </repeat>
+                    </tbody>
+                </table>
+                <check if="{{ $users->hasPreviousPage() }}">
+                    <a href="users?page={{ $users->previousPage() }}">Previous Page</a>
+                </check>                
+                <check if="{{ $users->hasNextPage() }}">
+                    <a href="users?page={{ $users->nextPage() }}">Next Page</a>
+                </check>
             </div>
         </div>
     </main>
+    <br><br>
 
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <script src="assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>

@@ -5,8 +5,9 @@ namespace Crypto\Repository;
 use GuzzleHttp\Client;
 use Crypto\Model\Weather;
 use Crypto\Client\WeatherClient;
+use Crypto\Repository\Repository;
 
-class WeatherRepository 
+class WeatherRepository extends Repository
 {
     /**
      * The weather API location woeid for Atlanta, GA
@@ -48,7 +49,7 @@ class WeatherRepository
         try {
             $uri = sprintf('location/%s', $locationId);
             $response = $this->client->request('GET', $uri);
-            
+
             $data = json_decode($response->getBody()->getContents(), true);
 
             return new Weather($data);
