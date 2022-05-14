@@ -4,6 +4,7 @@ namespace Crypto\Repository;
 
 use GuzzleHttp\Client;
 use Crypto\Client\RequesClient;
+use Crypto\Model\RequesUser;
 use Crypto\Repository\Repository;
 use Crypto\ResultSet\RequesUsersResultSetFactory;
 
@@ -38,6 +39,21 @@ class RequesRepository extends Repository
             $response = $this->client->request('GET', $uri);
 
             return RequesUsersResultSetFactory::buildFromResponse($response);
+        } catch (\Exception $e) {
+            return [
+                'error' => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function getUser($userId)
+    {
+        try {
+            $uri = sprintf('users/%d', $userId);
+            $response = $this->client->request('GET', $uri);
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            return new RequesUser($data['data']);
         } catch (\Exception $e) {
             return [
                 'error' => $e->getMessage(),

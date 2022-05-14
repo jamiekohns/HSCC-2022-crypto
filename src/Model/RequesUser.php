@@ -14,8 +14,6 @@ class RequesUser extends Model
 
     protected $avatar;
 
-    
-
     /**
      * Get the value of id
      */

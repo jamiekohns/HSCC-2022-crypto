@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<include href="src/Template/head.html">
+
+<body>
+    <main>
+        <include href="src/Template/header.html">
+        <div class="container">
+            <dl>
+                <dt>User ID</dt>
+                <dd>{{ $user->getId() }}</dd>
+                <dt>Avatar</dt>
+                <dd><img src="{{ $user->getAvatar() }}"></dd>
+                <dt>Name</dt>
+                <dd>{{ $user->getFullName() }}</dd>
+                <dt>Email</dt>
+                <dd>{{ $user->getEmail() }}</dd>
+            </dl>
+
+            <dl>
+                <repeat group="{{ @tracked_coins }}" value="{{ @coin }}">
+                    <dt>Symbol</dt><dd>{{ @coin.asset_id_base }}</dd>
+                    <dt>Price</dt><dd>{{ @coin.exchange_rate->getRoundRate() }} {{ @coin.asset_id_quote }}</dd>
+                </repeat>
+            </dl>
+        </div>
+    </main>
+    <include href="src/Template/footer.html">
+</body>
+
+</html>
