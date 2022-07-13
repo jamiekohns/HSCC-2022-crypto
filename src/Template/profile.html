@@ -17,12 +17,38 @@
                 <dd>{{ $user->getEmail() }}</dd>
             </dl>
 
-            <dl>
-                <repeat group="{{ @tracked_coins }}" value="{{ @coin }}">
-                    <dt>Symbol</dt><dd>{{ @coin.asset_id_base }}</dd>
-                    <dt>Price</dt><dd>{{ @coin.exchange_rate->getRoundRate() }} {{ @coin.asset_id_quote }}</dd>
-                </repeat>
-            </dl>
+            <h2 class="h3">Tracked Coins</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Price</th>
+                        <th>
+                            <form>
+                                <select>
+                                    <option value="">Newcoin</option>
+                                </select>
+                                <button class="btn btn-secondary" title="add" aria-hidden="true">
+                                    <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
+                                </button>
+                                
+                            </form>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <repeat group="{{ @tracked_coins }}" value="{{ @coin }}">
+                        <tr>
+                            <td>{{ @coin.asset_id_base }}</td>
+                            <td>{{ @coin.exchange_rate->getRoundRate() }} {{ @coin.asset_id_quote }}</td>
+                            <td>
+                                
+                                <a href="" title="remove"><img src="assets/open-iconic-master/svg/trash.svg"></a>
+                            </td>
+                        </tr>
+                    </repeat>
+                </tbody>
+            </table>
         </div>
     </main>
     <include href="src/Template/footer.html">

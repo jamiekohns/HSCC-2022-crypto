@@ -7,6 +7,11 @@ use Crypto\Repository\RequesRepository;
 use Crypto\Repository\WeatherRepository;
 
 class Dashboard {
+    public function beforeRoute($f3)
+    {
+        
+    }
+
     public function hello($f3) 
     {
         echo "Hello from the Dashboard";
