@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<include href="src/Template/head.html">
+
+<body>
+    <main>
+        <include href="src/Template/header.html">
+        <div class="container">
+            <dl>
+                <dt>User ID</dt>
+                <dd>{{ $user->getId() }}</dd>
+                <dt>Avatar</dt>
+                <dd><img src="{{ $user->getAvatar() }}"></dd>
+                <dt>Name</dt>
+                <dd>{{ $user->getFullName() }}</dd>
+                <dt>Email</dt>
+                <dd>{{ $user->getEmail() }}</dd>
+            </dl>
+
+            <h2 class="h3">Tracked Coins</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Price</th>
+                        <th>
+                            <form>
+                                <select>
+                                    <option value="">Newcoin</option>
+                                </select>
+                                <button class="btn btn-secondary" title="add" aria-hidden="true">
+                                    <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
+                                </button>
+                                
+                            </form>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <repeat group="{{ @tracked_coins }}" value="{{ @coin }}">
+                        <tr>
+                            <td>{{ @coin.asset_id_base }}</td>
+                            <td>{{ @coin.exchange_rate->getRoundRate() }} {{ @coin.asset_id_quote }}</td>
+                            <td>
+                                
+                                <a href="" title="remove"><img src="assets/open-iconic-master/svg/trash.svg"></a>
+                            </td>
+                        </tr>
+                    </repeat>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <include href="src/Template/footer.html">
+</body>
+
+</html>

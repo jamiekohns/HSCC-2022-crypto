@@ -14,8 +14,6 @@ class RequesUser extends Model
 
     protected $avatar;
 
-    
-
     /**
      * Get the value of id
      */
@@ -119,5 +117,16 @@ class RequesUser extends Model
     public function getFullName()
     {
         return sprintf('%s %s', $this->first_name, $this->last_name);
+    }
+    
+    public function getUserAuth(array $auths)
+    {
+        foreach ($auths as $auth) {
+            if ($auth['user_id'] == $this->getId()) {
+                return $auth;
+            }
+        }
+
+        return null;
     }
 }

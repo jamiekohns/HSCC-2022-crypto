@@ -32,7 +32,7 @@ class CryptoRepository extends Repository
 
             return $data;
         } catch (\Exception $e) {
-            die($e->getMessage());
+            dd($e->getMessage());
             return [
                 'error' => $e->getMessage(),
             ];
